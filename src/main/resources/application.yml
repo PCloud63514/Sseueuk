@@ -1,0 +1,11 @@
+server:
+  port: 8868
+spring:
+  profiles:
+    include: oauth
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  jwt:
+    secret: Sseueuk
+    period: 600000
