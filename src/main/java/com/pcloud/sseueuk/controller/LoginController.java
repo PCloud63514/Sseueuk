@@ -14,7 +14,7 @@ public class LoginController {
     @GetMapping
     public String login(Model model) {
         Map<String, String> oauth2Urls = new HashMap<>();
-        oauth2Urls.put("kakao", "kakaoLoginUrl");
+        oauth2Urls.put("kakao", "/oauth2/authorization/kakao");
 
         model.addAttribute("urls", oauth2Urls);
         return "page/oauth-login";
