@@ -24,10 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/home/**", "/login")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                // /home 하위의 모든 요청과 /login 요청에 대해 인증권한을 요구하지 않음.
+                .antMatchers("/home/**", "/login").permitAll()
+                // /api 요청에 대해 ROLE_USER 역할이 있어야 접근할 수 있도록 설정.
+                .antMatchers("/api").hasRole("USER")
+                // 나머지 요청에 대해서 인증권한이 필요하도록 설정.
+                .anyRequest().authenticated()
             .and()
             .oauth2Login().loginPage("/login")
             .userInfoEndpoint()
